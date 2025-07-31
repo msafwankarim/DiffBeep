@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nust-scrapper-config
+  labels:
+    app: nust-scrapper
+data:
+  URL: "{{ .Values.config.URL }}"
+  SELECTOR: "{{ .Values.config.SELECTOR }}"
+  EXPECTED_TEXT: "{{ .Values.config.EXPECTED_TEXT }}"
+  NOTIFY_RUN_CHANNEL: "{{ .Values.config.NOTIFY_RUN_CHANNEL }}"
+  INTERVAL_MINUTES: "{{ .Values.config.INTERVAL_MINUTES }}"

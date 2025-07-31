@@ -1,0 +1,13 @@
+image:
+  repository: ghcr.io/msafwankarim/content-change-detector
+  tag: v0.0.1
+  pullPolicy: IfNotPresent
+
+config:
+  URL: "<URL to monitor>"
+  SELECTOR: "<CSS selector for the content>"
+  EXPECTED_TEXT: "<Expected text content>"
+  NOTIFY_RUN_CHANNEL: "<notify.run channel URL>"
+  INTERVAL_MINUTES: 5
+  NOTIFICATION_TITLE: "<Notification Title>"
+  NOTIFICATION_TEXT: "<Notification Text>"

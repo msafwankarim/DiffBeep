@@ -1,0 +1,7 @@
+apiVersion: v2
+name: content-change-detector
+description: A Helm chart for detecting changes in web page content and sending notifications
+type: application
+version: 0.1.0
+description: A Helm chart for the content change detector
+appVersion: "1.0.0"
