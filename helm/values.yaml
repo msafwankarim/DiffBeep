@@ -1,6 +1,6 @@
 image:
-  repository: ghcr.io/msafwankarim/content-change-detector
-  tag: v0.0.1
+  repository: ghcr.io/msafwankarim/diffbeep
+  tag: latest
   pullPolicy: IfNotPresent
 
 config:
@@ -11,3 +11,5 @@ config:
   INTERVAL_MINUTES: 5
   NOTIFICATION_TITLE: "<Notification Title>"
   NOTIFICATION_TEXT: "<Notification Text>"
+
+resources: {}
