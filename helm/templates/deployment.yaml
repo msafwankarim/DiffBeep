@@ -1,47 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nust-scrapper
+  name: {{ .Release.Name }}-deployment
+  labels:
+    app: diffbeep
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nust-scrapper
+      app: diffbeep
   template:
     metadata:
       labels:
-        app: nust-scrapper
+        app: diffbeep
     spec:
       containers:
-        - name: nust-scrapper
+        - name: diffbeep
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["python", "-u", "scrapper.py"]
-          env:
-            - name: URL
-              valueFrom:
-                configMapKeyRef:
-                  name: nust-scrapper-config
-                  key: URL
-            - name: SELECTOR
-              valueFrom:
-                configMapKeyRef:
-                  name: nust-scrapper-config
-                  key: SELECTOR
-            - name: EXPECTED_TEXT
-              valueFrom:
-                configMapKeyRef:
-                  name: nust-scrapper-config
-                  key: EXPECTED_TEXT
-            - name: NOTIFY_RUN_CHANNEL
-              valueFrom:
-                configMapKeyRef:
-                  name: nust-scrapper-config
-                  key: NOTIFY_RUN_CHANNEL
-            - name: INTERVAL_MINUTES
-              valueFrom:
-                configMapKeyRef:
-                  name: nust-scrapper-config
-                  key: INTERVAL_MINUTES
+          envFrom:
+          - configMapRef:
+              name: {{ .Release.Name }}-config
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
