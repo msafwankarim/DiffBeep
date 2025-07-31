@@ -124,7 +124,46 @@ All configuration is done through environment variables:
 
 ## Kubernetes Deployment
 
-Deploy using Helm charts included in the repository:
+### Option 1: Using Pre-built Helm Chart from OCI Registry
+
+The easiest way to deploy DiffBeep to Kubernetes is using the pre-built Helm chart:
+
+1. **Install from OCI registry**
+   ```bash
+   helm install diffbeep oci://ghcr.io/msafwankarim/charts/diffbeep \
+     --set config.URL="https://example.com/page" \
+     --set config.SELECTOR=".content" \
+     --set config.EXPECTED_TEXT="Current content" \
+     --set config.NOTIFY_RUN_CHANNEL="https://notify.run/your-channel" \
+     --set config.NOTIFICATION_TITLE="Change Detected!"
+   ```
+
+2. **Or create a values file and install**
+   ```bash
+   # Create values.yaml with your configuration
+   cat > my-values.yaml << EOF
+   config:
+     URL: "https://example.com/page"
+     SELECTOR: ".content"
+     EXPECTED_TEXT: "Current content"
+     NOTIFY_RUN_CHANNEL: "https://notify.run/your-channel"
+     INTERVAL_MINUTES: 5
+     NOTIFICATION_TITLE: "Change Detected!"
+     NOTIFICATION_TEXT: "Custom message"
+   EOF
+   
+   # Install with values file
+   helm install diffbeep oci://ghcr.io/msafwankarim/charts/diffbeep -f my-values.yaml
+   ```
+
+3. **Upgrade deployment**
+   ```bash
+   helm upgrade diffbeep oci://ghcr.io/msafwankarim/charts/diffbeep -f my-values.yaml
+   ```
+
+### Option 2: Using Local Helm Chart
+
+Deploy using the Helm chart included in this repository:
 
 1. **Configure values**
    ```bash
