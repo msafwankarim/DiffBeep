@@ -17,6 +17,21 @@ A lightweight, containerized tool that monitors web pages for content changes an
 
 ### Using Docker
 
+#### Option 1: Using pre-built image from GitHub Container Registry
+
+1. **Create configuration file**
+   ```bash
+   cp docker/config.env docker/config.local.env
+   # Edit docker/config.local.env with your configuration
+   ```
+
+2. **Run with pre-built image**
+   ```bash
+   docker run --env-file docker/config.local.env ghcr.io/msafwankarim/diffbeep:latest
+   ```
+
+#### Option 2: Build locally
+
 1. **Clone the repository**
    ```bash
    git clone https://github.com/msafwankarim/DiffBeep.git
@@ -29,7 +44,7 @@ A lightweight, containerized tool that monitors web pages for content changes an
    # Edit docker/config.local.env with your configuration
    ```
 
-3. **Run with Docker**
+3. **Build and run with Docker**
    ```bash
    docker build -t diffbeep .
    docker run --env-file docker/config.local.env diffbeep
@@ -156,6 +171,9 @@ config:
 ├── main.py              # Main application code
 ├── requirements.txt     # Python dependencies
 ├── Dockerfile          # Docker container configuration
+├── .github/
+│   └── workflows/
+│       └── build-and-publish.yml # GitHub Actions workflow
 ├── docker/
 │   ├── config.env      # Environment template
 │   └── config.local.env # Local configuration (gitignored)
