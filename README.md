@@ -19,7 +19,7 @@ A lightweight, containerized tool that monitors web pages for content changes an
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/msafwankarim/DiffBeep.git
    cd diffbeep
    ```
 
@@ -159,7 +159,7 @@ config:
 ├── docker/
 │   ├── config.env      # Environment template
 │   └── config.local.env # Local configuration (gitignored)
-├── helm/               # Kubernetes deployment charts
+├── helm/               # Kubernetes deployment chart
 └── README.md          # This file
 ```
 
