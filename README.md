@@ -1,4 +1,4 @@
-# DiffBeep
+# 🔍 DiffBeep
 
 A lightweight, containerized tool that monitors web pages for content changes and sends notifications when changes are detected
 
